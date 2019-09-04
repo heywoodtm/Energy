@@ -4,7 +4,7 @@
 
 body {
   background: #fff;
-  color: #fff;
+  color: #000;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -146,6 +146,7 @@ h6 {
   line-height: 1;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
+  color:#fff;
 }
 
 #header #logo h1 a,
@@ -224,6 +225,47 @@ h6 {
 .sf-arrows ul .sf-with-ul:after {
   content: "\f105";
 }
+
+/*Section Headers */
+
+.section-header h3 {
+  font-size: 32px;
+  color: #111;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+  padding: 15px 0px 15px;
+}
+
+.section-header h3::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  left: calc(50% - 60px);
+}
+
+.section-header h3::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #011739;
+  bottom: 0;
+  left: calc(50% - 20px);
+}
+
+.section-header p {
+  text-align: center;
+  padding-bottom: 30px;
+  color: #333;
+}
+
 
 /* Nav Meu Container */
 
@@ -434,6 +476,10 @@ body.mobile-nav-active #mobile-nav-toggle {
     fill: #00A597;
   }
 
+.bar2{
+  fill: #6e22ec;
+}
+
   .bar:hover{
     fill: #6d087c;
   }
@@ -448,3 +494,12 @@ body.mobile-nav-active #mobile-nav-toggle {
 	  fill: none;
 	  stroke: #00183c;
 	  shape-rendering: crispEdges;
+}
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}

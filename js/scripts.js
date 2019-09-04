@@ -173,8 +173,11 @@ halfhour.onload = function() {
   var energydata = JSON.parse(halfhour.response);
 var resultsdata=energydata.results;
 
-plotgraph(resultsdata,"#usagechart");
-//showData(resultsdata);
+plotgraph(resultsdata,"#usagechart",findminimum(resultsdata));
+plottext(findminimum(resultsdata),"#usagelabel");
+
+
+
 
 
 
@@ -215,7 +218,7 @@ daily.onload = function() {
   var energydata = JSON.parse(daily.response);
 var resultsdata=energydata.results;
 
-plotgraph(resultsdata,"#dailychart");
+plotgraph(resultsdata,"#dailychart",(0.028*48));
 
 
 return resultsdata;
@@ -250,7 +253,7 @@ weekly.onload = function() {
   var energydata = JSON.parse(weekly.response);
 var resultsdata=energydata.results;
 
-plotgraph(resultsdata,"#weeklychart");
+plotgraph(resultsdata,"#weeklychart",(0.028*48*7));
 
 
 return resultsdata;
@@ -259,19 +262,21 @@ return resultsdata;
 
 //find the minimum of an array to work out always on
 
-function findmin(data) {
+function findminimum(input){
 
-for (var i=0; i<data.length; i++) {
+var minimum = 999
 
-var min=9999;
-if (data[i].consumption < min) {
- min = data[i].consumption;
-console.log(min);
+for (var i=0; i < input.length;i++){
+
+  if (input[i].consumption < minimum ){
+
+    minimum=input[i].consumption;
+    console.log(minimum)
+
+  }
+
 }
-console.log("Hello");
-}
-return min
-
+ return minimum
 }
 
 
@@ -318,10 +323,22 @@ function showData(jsonObj) {
 
 }
 
+function plottext(text,container){
+
+
+  var panel=document.querySelector(container);
+  var content= document.createElement('p');
+  content.textContent=text
+
+  panel.appendChild(content);
+        }
+
+
+
 
 //Graphing
 
-function plotgraph(inputdata,location) {
+function plotgraph(inputdata,location,constant) {
 
 
       // set the dimensions of the canvas
@@ -405,6 +422,15 @@ var data = inputdata;
             .attr("width", x.rangeBand())
             .attr("y", function(d) { return y(d.consumption); })
             .attr("height", function(d) { return height - y(d.consumption); });
+
+            svg.selectAll("bar2")
+                .data(data)
+              .enter().append("rect")
+                .attr("class", "bar2")
+                .attr("x", function(d) { return x(d.interval_start ); })
+                .attr("width", x.rangeBand())
+                .attr("y", function(d) { return y(constant); })
+                .attr("height", function(d) { return height - y(constant); });
 
 
 
