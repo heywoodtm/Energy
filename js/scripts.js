@@ -210,7 +210,7 @@ daily.setRequestHeader("Postman-Token", "081f1f70-bb8d-413a-a14b-b45a377499a1,81
 daily.setRequestHeader("Host", "api.octopus.energy");
 daily.setRequestHeader("Accept-Encoding", "gzip, deflate");
 daily.setRequestHeader("Connection", "keep-alive");
-
+daily.setRequestHeader("Access-Control-Allow-Origin","*");
 
 daily.send(dailydata);
 
@@ -246,6 +246,7 @@ weekly.setRequestHeader("Host", "api.octopus.energy");
 weekly.setRequestHeader("Accept-Encoding", "gzip, deflate");
 weekly.setRequestHeader("Connection", "keep-alive");
 weekly.setRequestHeader("cache-control", "no-cache");
+weekly.setRequestHeader("Access-Control-Allow-Origin","*");
 
 weekly.send(weeklydata);
 
@@ -568,3 +569,6 @@ dateFormat.i18n = {
 Date.prototype.format = function (mask, utc) {
 	return dateFormat(this, mask, utc);
 };
+
+
+console.log("hello");
