@@ -383,12 +383,12 @@ var data = inputdata;
           data.forEach(function(d) {
               d.interval_start = new Date(d.interval_start) ;
               d.interval_start = d.interval_start.format("dd-mmm-yy, hh:MM TT");
-              d.consumption = +d.consumption;
+              d.consumption = d.consumption*0.1423;
           });
 
         // scale the range of the data
         x.domain(data.map(function(d) { return d.interval_start ; }));
-        y.domain([0, d3.max(data, function(d) { return d.consumption*0.1423; })]);
+        y.domain([0, d3.max(data, function(d) { return d.consumption; })]);
 
         // add axis
         svg.append("g")
@@ -421,8 +421,8 @@ var data = inputdata;
             .attr("class", "bar")
             .attr("x", function(d) { return x(d.interval_start ); })
             .attr("width", x.rangeBand())
-            .attr("y", function(d) { return y(d.consumption*0.1423); })
-            .attr("height", function(d) { return height - y(d.consumption*0.1423); });
+            .attr("y", function(d) { return y(d.consumption); })
+            .attr("height", function(d) { return height - y(d.consumption); });
 
             svg.selectAll("bar2")
                 .data(data)
