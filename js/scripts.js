@@ -171,7 +171,7 @@ halfhour.send(halfhourdata);
 
 halfhour.onload = function() {
   var energydata = JSON.parse(halfhour.response);
-var resultsdata=energydata.results;
+var resultsdata=energydata.results*14.23;
 
 plotgraph(resultsdata,"#usagechart",findminimum(resultsdata));
 plottext(findminimum(resultsdata),"#usagelabel");
@@ -216,7 +216,7 @@ daily.send(dailydata);
 
 daily.onload = function() {
   var energydata = JSON.parse(daily.response);
-var resultsdata=energydata.results;
+var resultsdata=energydata.results*0.1423;
 
 plotgraph(resultsdata,"#dailychart",(0.028*48));
 
@@ -252,7 +252,7 @@ weekly.send(weeklydata);
 
 weekly.onload = function() {
   var energydata = JSON.parse(weekly.response);
-var resultsdata=energydata.results;
+var resultsdata=energydata.results*0.1423;
 
 plotgraph(resultsdata,"#weeklychart",(0.028*48*7));
 
