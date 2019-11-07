@@ -171,7 +171,7 @@ halfhour.send(halfhourdata);
 
 halfhour.onload = function() {
   var energydata = JSON.parse(halfhour.response);
-var resultsdata=energydata.results*14.23;
+var resultsdata=energydata.results;
 
 plotgraph(resultsdata,"#usagechart",findminimum(resultsdata));
 plottext(findminimum(resultsdata),"#usagelabel");
@@ -216,7 +216,7 @@ daily.send(dailydata);
 
 daily.onload = function() {
   var energydata = JSON.parse(daily.response);
-var resultsdata=energydata.results*0.1423;
+var resultsdata=energydata.results;
 
 plotgraph(resultsdata,"#dailychart",(0.028*48));
 
@@ -252,7 +252,7 @@ weekly.send(weeklydata);
 
 weekly.onload = function() {
   var energydata = JSON.parse(weekly.response);
-var resultsdata=energydata.results*0.1423;
+var resultsdata=energydata.results;
 
 plotgraph(resultsdata,"#weeklychart",(0.028*48*7));
 
@@ -383,7 +383,7 @@ var data = inputdata;
           data.forEach(function(d) {
               d.interval_start = new Date(d.interval_start) ;
               d.interval_start = d.interval_start.format("dd-mmm-yy, hh:MM TT");
-              d.consumption = +d.consumption;
+              d.consumption = +d.consumption*0.1423;
           });
 
         // scale the range of the data
